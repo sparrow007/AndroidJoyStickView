@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="JoyStickView">
+
+        <attr name="outerCircleBorderWidth" format="float"/>
+        <attr name="outerCircleBorderColor" format="color"/>
+        <attr name="lockCenter" format="boolean"/>
+        <attr name="innerCircleColor" format="color"/>
+        <attr name="innerCircleImage" format="reference"/>
+        <attr name="shadowRadius" format="float"/>
+        <attr name="shadowDx" format="float"/>
+        <attr name="shadowDy" format="float"/>
+        <attr name="innerCircleRadius" format="float"/>
+        <attr name="outerCircleColor" format="color"/>
+        <attr name="shadowColor" format="color"/>
+
+    </declare-styleable>
+
+</resources>
