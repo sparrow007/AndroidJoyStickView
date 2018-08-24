@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/sparrow007/AndroidJoyStickView'
     gitUrl = 'https://github.com/sparrow007/AndroidJoyStickView.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
 
     developerId = 'sparrow007' // Maven plugin uses this. I don't know if it needs to be anything special.
     developerName = 'Ankit kumar'
@@ -30,7 +30,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"

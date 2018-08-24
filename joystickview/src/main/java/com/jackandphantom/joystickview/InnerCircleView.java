@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class InnerCircleView extends View {
+class InnerCircleView extends View {
 
 
     private float circleRadius;

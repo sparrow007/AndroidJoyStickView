@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class OuterCircleView extends View {
+class OuterCircleView extends View {
 
 
     private float centerPoint;
