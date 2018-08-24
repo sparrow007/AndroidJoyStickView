@@ -51,10 +51,7 @@ public class OuterCircleView extends View {
         circlePaint.setStyle(Paint.Style.FILL);
 
         borderCirclePaint.setAntiAlias(true);
-        borderCirclePaint.setColor(Color.WHITE);
         borderCirclePaint.setStyle(Paint.Style.STROKE);
-        setLayerType(LAYER_TYPE_SOFTWARE, circlePaint);
-        borderCirclePaint.setStrokeWidth(0f);
         setShadow();
 
     }
@@ -88,8 +85,9 @@ public class OuterCircleView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawCircle(centerPoint , centerPoint, circleRadius , circlePaint);
         canvas.drawCircle(centerPoint, centerPoint, circleRadius, borderCirclePaint);
+        canvas.drawCircle(centerPoint , centerPoint, circleRadius , circlePaint);
+
     }
 
     /*
@@ -105,8 +103,8 @@ public class OuterCircleView extends View {
 
     private  void setShadow() {
 
-        setLayerType(LAYER_TYPE_SOFTWARE, circlePaint);
-        circlePaint.setShadowLayer(shadowRadius, -dx, dy, shadowColor);
+        setLayerType(LAYER_TYPE_SOFTWARE, borderCirclePaint);
+        borderCirclePaint.setShadowLayer(shadowRadius, -dx, dy, shadowColor);
     }
 
     /**   Setter and Getter methods         ****/

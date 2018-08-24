@@ -59,7 +59,7 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.JoyStickView,0,0);
         outerCircleBorderWidth = a.getFloat(R.styleable.JoyStickView_outerCircleBorderWidth, 0f);
-        outerCircleBorderColor = a.getColor(R.styleable.JoyStickView_outerCircleBorderColor, Color.BLACK);
+        outerCircleBorderColor = a.getColor(R.styleable.JoyStickView_outerCircleBorderColor, Color.WHITE);
         innerCircleColor = a.getColor(R.styleable.JoyStickView_innerCircleColor, Color.BLACK);
         outerCircleColor = a.getColor(R.styleable.JoyStickView_outerCircleColor, Color.WHITE);
         shadowColor = a.getColor(R.styleable.JoyStickView_shadowColor, Color.BLACK);
