@@ -116,6 +116,9 @@ class InnerCircleView extends View {
                 if (!lockCenter || strength < 100) {
                     centerPointY = centerPoint;
                     centerPointX = centerPoint;
+                    if (onMoveListener != null) {
+                        onMoveListener.onMove(0, 0);
+                    }
                 }
                 invalidate();
                 break;
