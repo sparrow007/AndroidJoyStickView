@@ -1,5 +1,5 @@
 jdk:
   - openjdk11
 install:
-  - ./gradlew :library:build :library:publishToMavenLocal -x :library:test
+  - ./gradlew :joystickview:build :joystickview:publishToMavenLocal -x :joystickview:test
   - find . -name "*.aar"
