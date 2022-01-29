@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +31,8 @@ class InnerCircleView extends View {
     private float strength;
     private float bitmapDrawFactor;
     private int min;
+    private int pointerId;
+    private boolean pointerValid = false;
 
 
     OnSMallMoveListener onMoveListener;
@@ -106,26 +109,41 @@ class InnerCircleView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         angle(event.getX(), event.getY());
 
+        int pointerIdx = event.getActionIndex();
+        int currentPointerId = event.getPointerId(pointerIdx);
+        if ((pointerValid) && (currentPointerId != pointerId)){
+            return true;
+        }
         switch (event.getAction()) {
 
             case MotionEvent.ACTION_UP:
-
+            case MotionEvent.ACTION_POINTER_UP:
                 if (!lockCenter || strength < 100) {
                     centerPointY = centerPoint;
                     centerPointX = centerPoint;
+                    if (onMoveListener != null) {
+                        onMoveListener.onMove(0, 0);
+                    }
                 }
+                pointerValid = false;
                 invalidate();
                 break;
             case MotionEvent.ACTION_DOWN:
-
-                handleMotion(event.getX(), event.getY());
+            case MotionEvent.ACTION_POINTER_DOWN:
+                handleMotion(event.getX(pointerIdx), event.getY(pointerIdx));
+                if (isInsideCircle) {
+                    pointerValid = true;
+                    pointerId = currentPointerId;
+                }
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                handleMotionEvent(event.getX(), event.getY());
+                if (!pointerValid){
+                    return true;
+                }
+                handleMotionEvent(event.getX(pointerIdx), event.getY(pointerIdx));
                 break;
         }
 
