@@ -27,13 +27,10 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
     private int innerCircleImage;
     private int shadowColor;
 
-
     OnMoveListener onMoveListener;
-
 
     @Override
     public void onMove(double angle, float strength) {
-
         if (onMoveListener != null) {
             onMoveListener.onMove(angle, strength);
         }
@@ -45,7 +42,6 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
 
     public JoyStickView(@NonNull Context context) {
         super(context);
-
     }
 
     public JoyStickView(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -57,21 +53,23 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
     public JoyStickView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.JoyStickView,0,0);
-        outerCircleBorderWidth = a.getFloat(R.styleable.JoyStickView_outerCircleBorderWidth, 0f);
-        outerCircleBorderColor = a.getColor(R.styleable.JoyStickView_outerCircleBorderColor, Color.WHITE);
-        innerCircleColor = a.getColor(R.styleable.JoyStickView_innerCircleColor, Color.BLACK);
-        outerCircleColor = a.getColor(R.styleable.JoyStickView_outerCircleColor, Color.WHITE);
-        shadowColor = a.getColor(R.styleable.JoyStickView_shadowColor, Color.BLACK);
-        lockCenter = a.getBoolean(R.styleable.JoyStickView_lockCenter, false);
-        innerCircleRadius = a.getFloat(R.styleable.JoyStickView_innerCircleRadius, 0.1f);
-        shadowRadius = a.getFloat(R.styleable.JoyStickView_shadowRadius, 0f);
-        dx = a.getFloat(R.styleable.JoyStickView_shadowDx, 5.0f);
-        dy = a.getFloat(R.styleable.JoyStickView_shadowDy, 5.0f);
-        innerCircleImage = a.getResourceId(R.styleable.JoyStickView_innerCircleImage ,0);
-
-
-        a.recycle();
+        try (TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.JoyStickView, 0, 0)) {
+            try {
+                outerCircleBorderWidth = a.getFloat(R.styleable.JoyStickView_outerCircleBorderWidth, 0f);
+                outerCircleBorderColor = a.getColor(R.styleable.JoyStickView_outerCircleBorderColor, Color.WHITE);
+                innerCircleColor = a.getColor(R.styleable.JoyStickView_innerCircleColor, Color.BLACK);
+                outerCircleColor = a.getColor(R.styleable.JoyStickView_outerCircleColor, Color.WHITE);
+                shadowColor = a.getColor(R.styleable.JoyStickView_shadowColor, Color.BLACK);
+                lockCenter = a.getBoolean(R.styleable.JoyStickView_lockCenter, false);
+                innerCircleRadius = a.getFloat(R.styleable.JoyStickView_innerCircleRadius, 0.1f);
+                shadowRadius = a.getFloat(R.styleable.JoyStickView_shadowRadius, 0f);
+                dx = a.getFloat(R.styleable.JoyStickView_shadowDx, 5.0f);
+                dy = a.getFloat(R.styleable.JoyStickView_shadowDy, 5.0f);
+                innerCircleImage = a.getResourceId(R.styleable.JoyStickView_innerCircleImage, 0);
+            } finally {
+                a.recycle();
+            }
+        }
         init();
     }
 
@@ -95,7 +93,6 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
         setShadowRadius(shadowRadius);
         setShadowDxAndDy(dx, dy);
         setShadowColor(shadowColor);
-
     }
 
     public void setOnMoveListener(OnMoveListener onMoveListener) {
@@ -103,9 +100,8 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
     }
 
    /**
-    * We re measure the size of the OuterCircleiView and InnerCircleView so init() method only initialize the
-    * paint related attributes
-    * */
+    * We re measure the size of the OuterCircleView and InnerCircleView so init() method only initialize the
+    * paint related attributes */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -127,15 +123,12 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
     }
 
     public void setInnerCircleRadius(float radius) {
-
         float outerCircleFactor = 0.5f - radius ;
         outerCircleView.setOuterCircle(outerCircleFactor);
         innerCircleView.setInnerCircleFactor(radius, outerCircleFactor);
-
     }
 
     public void setInnerCircleColor(int color) {
-
         innerCircleView.setCirclePaintColor(color);
     }
 
@@ -144,7 +137,6 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
     }
 
     public void setInnerCircleImageResId(int resId) {
-
         try {
             innerCircleView.setImageResId(resId);
         }catch (IllegalArgumentException exp) {
@@ -162,7 +154,6 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
     }
 
     public void setOuterCircleColor(int color) {
-
         outerCircleView.setCircleColor(color);
     }
 
@@ -171,7 +162,6 @@ public class JoyStickView extends FrameLayout implements InnerCircleView.OnSMall
     }
 
     public void setOuterCircleBorderColor(int color) {
-
         outerCircleView.setBorderCircleColor(color);
     }
 

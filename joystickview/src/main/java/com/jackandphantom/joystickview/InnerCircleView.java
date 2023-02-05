@@ -34,23 +34,19 @@ class InnerCircleView extends View {
     OnSMallMoveListener onMoveListener;
 
     /*
-     * Interface called when innercricle or joystick point is moving and this interface will provide the
+     * Interface called when InnerCircleView or joystick point is moving and this interface will provide the
      * angle and strength
      * **/
-
     interface OnSMallMoveListener {
-
         void onMove(double angle, float strength);
     }
 
     public InnerCircleView(Context context) {
         super(context);
-
     }
 
     public InnerCircleView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
-
     }
 
     public InnerCircleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -60,11 +56,9 @@ class InnerCircleView extends View {
 
     //Initializing paint methods attributes
     private void init() {
-
         circlePaint.setAntiAlias(true);
         circlePaint.setStyle(Paint.Style.FILL);
         circlePaint.setColor(Color.BLACK);
-
     }
 
     /**
@@ -78,7 +72,6 @@ class InnerCircleView extends View {
         if (!changeLayoutManual) {
             width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
             height = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
-
             setMeasuredDimension(width, height);
         } else {
             setMeasuredDimension(width, height);
@@ -91,7 +84,6 @@ class InnerCircleView extends View {
         circleRadius = min * innerCircleFactor;
         limitRadius = min * outerCircleFactor;
         bitmapDrawFactor = circleRadius * 0.5f;
-
     }
 
     @Override
@@ -105,13 +97,10 @@ class InnerCircleView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         angle(event.getX(), event.getY());
 
         switch (event.getAction()) {
-
             case MotionEvent.ACTION_UP:
-
                 if (!lockCenter || strength < 100) {
                     centerPointY = centerPoint;
                     centerPointX = centerPoint;
@@ -119,10 +108,8 @@ class InnerCircleView extends View {
                 invalidate();
                 break;
             case MotionEvent.ACTION_DOWN:
-
                 handleMotion(event.getX(), event.getY());
                 break;
-
             case MotionEvent.ACTION_MOVE:
                 handleMotionEvent(event.getX(), event.getY());
                 break;
@@ -133,7 +120,6 @@ class InnerCircleView extends View {
 
     //Use some maths for make joystick working well
     private void handleMotionEvent(float x, float y) {
-
         double abs = (Math.sqrt(Math.pow((x - centerPoint), 2) + Math.pow((y - centerPoint), 2)));
 
         if (onMoveListener != null) {
@@ -144,20 +130,16 @@ class InnerCircleView extends View {
             centerPointX = x;
             centerPointY = y;
             invalidate();
-
         } else {
             if (isInsideCircle) {
                 centerPointX = (float) ((x - centerPoint) * limitRadius / abs + centerPoint);
                 centerPointY = (float) ((y - centerPoint) * limitRadius / abs + centerPoint);
-
                 invalidate();
             }
         }
-
     }
 
     private double angle(float x, float y) {
-
         double angle = Math.toDegrees(Math.atan2((y - centerPoint), (x - centerPoint)));
         return angle > 0 ? 360 - angle : (-angle);
     }
@@ -199,7 +181,6 @@ class InnerCircleView extends View {
         this.onMoveListener = onMoveListener;
 
     }
-
 
     private void handleMotion(float x, float y) {
 
