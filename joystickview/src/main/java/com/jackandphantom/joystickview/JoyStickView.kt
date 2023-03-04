@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.jackandphantom.joystickview.InnerCircleView.OnSmallMoveListener
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class JoyStickView : FrameLayout, OnSmallMoveListener {
@@ -29,10 +28,6 @@ class JoyStickView : FrameLayout, OnSmallMoveListener {
 
     override fun onMove(angle: Double, strength: Float) {
         onMoveListener?.onMove(angle, strength)
-    }
-
-    interface OnMoveListener {
-        fun onMove(angle: Double, strength: Float)
     }
 
     constructor(context: Context) : super(context)
