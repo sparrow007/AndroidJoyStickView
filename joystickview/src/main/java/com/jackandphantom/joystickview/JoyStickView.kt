@@ -29,6 +29,10 @@ class JoyStickView : FrameLayout, OnSmallMoveListener {
         onMoveListener?.onMove(angle, strength)
     }
 
+    override fun onDoubleClick() {
+        onMoveListener?.onDoubleClick()
+    }
+
     constructor(context: Context) : super(context)
 
     //Taking all the inputs from xml if available

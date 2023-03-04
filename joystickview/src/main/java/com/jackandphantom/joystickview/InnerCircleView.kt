@@ -98,6 +98,10 @@ internal class InnerCircleView : View {
                     centerPointX = centerPoint
                 }
                 invalidate()
+                if (System.currentTimeMillis() - upTime < THRESHOLD_DOUBLE_CLICK) {
+                    onMoveListener?.onDoubleClick()
+                }
+                upTime = System.currentTimeMillis()
             }
             MotionEvent.ACTION_DOWN -> handleMotion(event.x, event.y)
             MotionEvent.ACTION_MOVE -> handleMotionEvent(event.x, event.y)
@@ -206,5 +210,10 @@ internal class InnerCircleView : View {
         innerCircleFactor = innerFactor
         this.outerCircleFactor = outerCircleFactor
         invalidate()
+    }
+
+    companion object {
+        private const val THRESHOLD_DOUBLE_CLICK = 300
+        private var upTime = System.currentTimeMillis()
     }
 }
