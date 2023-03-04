@@ -5,4 +5,5 @@ package com.jackandphantom.joystickview
  */
 interface OnMoveListener {
     fun onMove(angle: Double, strength: Float)
+    fun onDoubleClick()
 }

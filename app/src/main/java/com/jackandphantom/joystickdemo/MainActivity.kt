@@ -28,4 +28,10 @@ class MainActivity : AppCompatActivity(), OnMoveListener {
         binding.text.text  = "angle=${angle.toInt()} strength=${strength.toInt()}"
         Log.d("MainActivity", "${angle.toInt()} ${strength.toInt()}")
     }
+
+    @SuppressLint("SetTextI18n")
+    override fun onDoubleClick() {
+        binding.text.text  = "onDoubleClick"
+        Log.d("MainActivity", "onDoubleClick")
+    }
 }
