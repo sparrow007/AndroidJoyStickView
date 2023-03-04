@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.jackandphantom.joystickview.InnerCircleView.OnSMallMoveListener
 
+@Suppress("MemberVisibilityCanBePrivate")
 class JoyStickView : FrameLayout, OnSMallMoveListener {
     private var outerCircleView: OuterCircleView? = null
     private var innerCircleView: InnerCircleView? = null
