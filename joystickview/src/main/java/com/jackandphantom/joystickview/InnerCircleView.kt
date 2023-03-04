@@ -39,7 +39,11 @@ internal class InnerCircleView : View {
     constructor(context: Context?) : super(context)
 
     @JvmOverloads
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int = 0) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int = 0) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         init()
     }
 
@@ -77,7 +81,12 @@ internal class InnerCircleView : View {
         super.onDraw(canvas)
         canvas.drawCircle(centerPointX, centerPointY, circleRadius, circlePaint)
         if (bitmap != null)
-            canvas.drawBitmap(bitmap!!, centerPointX - bitmapDrawFactor, centerPointY - bitmapDrawFactor, null)
+            canvas.drawBitmap(
+                bitmap!!,
+                centerPointX - bitmapDrawFactor,
+                centerPointY - bitmapDrawFactor,
+                null
+            )
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -135,7 +144,11 @@ internal class InnerCircleView : View {
             return drawable.bitmap
         }
         if (drawable.intrinsicWidth > 0 && drawable.intrinsicHeight > 0) {
-            bitmap = Bitmap.createBitmap(circleRadius.toInt(), circleRadius.toInt(), Bitmap.Config.ARGB_8888)
+            bitmap = Bitmap.createBitmap(
+                circleRadius.toInt(),
+                circleRadius.toInt(),
+                Bitmap.Config.ARGB_8888
+            )
             val canvas = Canvas(bitmap)
             drawable.setBounds(0, 0, canvas.width, canvas.height)
             drawable.draw(canvas)
