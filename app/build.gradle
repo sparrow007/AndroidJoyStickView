@@ -16,6 +16,10 @@ android {
         namespace 'com.jackandphantom.joystickdemo'
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
