@@ -6,10 +6,10 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.jackandphantom.joystickview.InnerCircleView.OnSMallMoveListener
+import com.jackandphantom.joystickview.InnerCircleView.OnSmallMoveListener
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class JoyStickView : FrameLayout, OnSMallMoveListener {
+class JoyStickView : FrameLayout, OnSmallMoveListener {
     private var outerCircleView: OuterCircleView? = null
     private var innerCircleView: InnerCircleView? = null
     private var outerCircleBorderWidth = 0f

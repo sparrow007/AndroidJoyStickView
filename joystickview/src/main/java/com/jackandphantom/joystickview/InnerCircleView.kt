@@ -34,15 +34,7 @@ internal class InnerCircleView : View {
     private var outerCircleFactor = 0.4f
     private var strength = 0f
     private var bitmapDrawFactor = 0f
-    var onMoveListener: OnSMallMoveListener? = null
-
-    /*
-     * Interface called when InnerCircleView or joystick point is moving and this interface will provide the
-     * angle and strength
-     * **/
-    internal interface OnSMallMoveListener {
-        fun onMove(angle: Double, strength: Float)
-    }
+    var onMoveListener: OnSmallMoveListener? = null
 
     constructor(context: Context?) : super(context)
 
@@ -84,7 +76,8 @@ internal class InnerCircleView : View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawCircle(centerPointX, centerPointY, circleRadius, circlePaint)
-        if (bitmap != null) canvas.drawBitmap(bitmap!!, centerPointX - bitmapDrawFactor, centerPointY - bitmapDrawFactor, null)
+        if (bitmap != null)
+            canvas.drawBitmap(bitmap!!, centerPointX - bitmapDrawFactor, centerPointY - bitmapDrawFactor, null)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -106,9 +99,7 @@ internal class InnerCircleView : View {
     //Use some maths for make joystick working well
     private fun handleMotionEvent(x: Float, y: Float) {
         val abs = sqrt((x - centerPoint).toDouble().pow(2.0) + (y - centerPoint).toDouble().pow(2.0))
-        if (onMoveListener != null) {
-            onMoveListener!!.onMove(angle(x, y), getStrength(abs))
-        }
+        onMoveListener?.onMove(angle(x, y), getStrength(abs))
         if (abs <= limitRadius) {
             centerPointX = x
             centerPointY = y
@@ -153,7 +144,7 @@ internal class InnerCircleView : View {
         return null
     }
 
-    fun setOnMoveListener(onMoveListener: OnSMallMoveListener?) {
+    fun setOnMoveListener(onMoveListener: OnSmallMoveListener?) {
         this.onMoveListener = onMoveListener
     }
 

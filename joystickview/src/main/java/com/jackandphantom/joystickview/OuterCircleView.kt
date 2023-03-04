@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import kotlin.math.min
 
+@Suppress("unused")
 internal class OuterCircleView : View {
     private var centerPoint = 0f
     private var circleRadius = 0f
