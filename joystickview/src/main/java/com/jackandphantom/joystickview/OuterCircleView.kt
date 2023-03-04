@@ -18,6 +18,11 @@ internal class OuterCircleView : View {
     private var width = 0
     private var height = 0
     var shadowRadius = 9.0f
+        set(value) {
+            field = value
+            setShadow()
+            invalidate()
+        }
     var dx = 5.0f
         private set
     var dy = 5.0f
@@ -30,7 +35,11 @@ internal class OuterCircleView : View {
     constructor(context: Context?) : super(context)
 
     @JvmOverloads
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int = 0) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int = 0) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         init()
     }
 
@@ -96,12 +105,6 @@ internal class OuterCircleView : View {
         invalidate()
     }
 
-    fun setShadowRadius(radius: Float) {
-        shadowRadius = radius
-        setShadow()
-        invalidate()
-    }
-
     fun setCircleColor(color: Int) {
         circlePaint.color = color
         invalidate()
@@ -133,7 +136,4 @@ internal class OuterCircleView : View {
     val outerCircleBorderWidth: Float
         get() = borderCirclePaint.strokeWidth
 
-    fun getShadowRadius(): Float {
-        return shadowRadius
-    }
 }
