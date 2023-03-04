@@ -28,9 +28,7 @@ class JoyStickView : FrameLayout, OnSMallMoveListener {
     var onMoveListener: OnMoveListener? = null
 
     override fun onMove(angle: Double, strength: Float) {
-        if (onMoveListener != null) {
-            onMoveListener!!.onMove(angle, strength)
-        }
+        onMoveListener?.onMove(angle, strength)
     }
 
     interface OnMoveListener {
