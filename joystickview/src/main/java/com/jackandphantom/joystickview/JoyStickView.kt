@@ -23,8 +23,7 @@ class JoyStickView : FrameLayout, OnSmallMoveListener {
     private var innerCircleImage = 0
     private var shadowColor = 0
 
-    @Suppress("MemberVisibilityCanBePrivate")
-    var onMoveListener: OnMoveListener? = null
+    private var onMoveListener: OnMoveListener? = null
 
     override fun onMove(angle: Double, strength: Float) {
         onMoveListener?.onMove(angle, strength)

@@ -34,7 +34,7 @@ internal class InnerCircleView : View {
     private var outerCircleFactor = 0.4f
     private var strength = 0f
     private var bitmapDrawFactor = 0f
-    var onMoveListener: OnSmallMoveListener? = null
+    private var onMoveListener: OnSmallMoveListener? = null
 
     constructor(context: Context?) : super(context)
 
